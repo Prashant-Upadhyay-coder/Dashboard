@@ -1,0 +1,627 @@
+﻿
+@{
+    ViewData["Title"] = "Scan";
+    Layout = "~/Views/Operator/TargetMasterpage.cshtml";
+}
+
+<body onload="getTable()">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-6 col-md-6 col-lg-6 mt-2">
+                    <ul class="breadcrumb m-0" style="font-size: 18px; font-weight: 500;  padding:0px 0px 9px 0px;">
+                        <li class="breadcrumb-item"><a href="#" style="text-decoration:none; color:black">Operator</a></li>
+                        <li class="breadcrumb-item active" area-current="page" style="color:blue">Scan Details</li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-6 col-lg-6 mt-2">
+                    <button class="btn1 btn" id="VAPT_OPT_SCN_B01" onclick="getTable_02()">
+                        <span class="">SCAN</span>
+                        <span class="btn1_img">
+                            <img src="~/images/circle plus.png" />
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div id="activecontent">
+                <div class="card tcard mt-2">
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="table-responsive" id="VAPT_OPT_SCN_T01_Parent">
+                                @*<table class="table mt-3" id="VAPT_OPT_SCN_T01">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th>Scan Id</th>
+                                                <th>Creation Time</th>
+                                                <th>Tool Type</th>
+                                                <th>Method Name</th>
+                                                <th>Target</th>
+                                                <th>VAPT Device</th>
+                                                <th>Scan Start</th>
+                                                <th>Scan End</th>
+                                                <th>Status</th>
+                                                <th>Modify</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>A01022024</td>
+                                                <td>01-02-24 12:30PM</td>
+                                                <td>Website Scanning</td>
+                                                <td>SQL Injection</td>
+                                                <td>3</td>
+                                                <td>192.168.100.2</td>
+                                                <td>02-01-24 24:00PM</td>
+                                                <td>02-01-24 01:00PM</td>
+                                                <td class="text-success">Complete</td>
+                                                <td id="patchScanrsult"><a href="" data-bs-toggle="modal" data-bs-target="#target_Modal"><i class="fa fa-edit icon"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>B01022024</td>
+                                                <td>01-02-24 12:30PM</td>
+                                                <td>Vulnerability Scanning</td>
+                                                <td>ms-sql-info</td>
+                                                <td>4</td>
+                                                <td>192.168.100.2</td>
+                                                <td>02-01-24 24:00PM</td>
+                                                <td>02-01-24 01:00PM</td>
+                                                <td class="text-warning">Inprogress</td>
+                                                <td id="patchScanrsult"><a href="" data-bs-toggle="modal" data-bs-target="#target_Modal"> <i class="fa fa-edit icon icon"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>B01022024</td>
+                                                <td>01-02-24 12:30PM</td>
+                                                <td>Vulnerability Scanning</td>
+                                                <td>ms-sql-info</td>
+                                                <td>-</td>
+                                                <td>192.168.100.2</td>
+                                                <td>02-01-24 24:00PM</td>
+                                                <td>02-01-24 01:00PM</td>
+                                                <td class="text-danger">Failed</td>
+                                                <td id="patchScanrsult"><a href="" data-bs-toggle="modal" data-bs-target="#target_Modal"> <i class="fa fa-edit icon"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*========================= Scan Create Slide Down ===========================*@
+                <div id="VAPT_OPT_SCN_D01" style="display:none;">
+                    <div class="card manager-details-card mt-3 p-2">
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                    <h4 class="project-details-name">Scan Create</h4>
+                                </div>
+                                <div class=" col-6 col-sm-6 col-md-6 col-lg-6 text-end">
+                                    <button type="button" class="btn-close" id="VAPT_OPT_SCN_D01_CLS_BTN"></button>
+                                </div>
+                                <hr />
+                            </div>
+                            <div class="card p-4 card-shdw">
+                                <form id="VAPT_OPT_SCN_D01_FM01">
+                                    <div class="row">
+                                        <div class="col-lg-6 mt-1">
+                                            <div class="row">
+                                                <label for="VAPT_OPT_SCN_D01_FM01_F01" class="form-label col-sm-4">
+                                                    OWASP <span style="color:red;margin-left:4px">*</span>
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-select form-select-sm" id="VAPT_OPT_SCN_D01_FM01_F01" name="VA_VAPT_OPT_SCN_D01_FM01_F01">
+                                                        <option value="">--Select OWASP--</option>
+                                                        <option value="1">Wesite Scanning</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6 mt-1">
+                                            <div class="row">
+                                                <label for="VAPT_OPT_SCN_D01_FM01_F02" class="form-label col-sm-4">
+                                                    Tool Type <span style="color:red;margin-left:4px">*</span>
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-select form-select-sm" id="VAPT_OPT_SCN_D01_FM01_F02" name="VA_VAPT_OPT_SCN_D01_FM01_F02">
+                                                        <option value="">--Select Type--</option>
+                                                        <option value="1">Wesite Scanning</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-6 mt-1">
+                                            <div class="row">
+                                                <label for="VAPT_OPT_SCN_D01_FM01_F03" class="form-label  col-sm-4">
+                                                    Deployment Template
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-select form-select-sm" id="VAPT_OPT_SCN_D01_FM01_F03" name="VA_VAPT_OPT_SCN_D01_FM01_F03">
+                                                        <option value="">--Select Template--</option>
+                                                        <option value="1">192.168.100.5</option>
+                                                        <option value="2">192.168.100.5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mt-1">
+                                            <div class="row">
+                                                <label for="VAPT_OPT_SCN_D01_FM01_F04" class="form-label  col-sm-4">
+                                                    VAPT Device @*<span style="color:red;margin-left:4px">*</span>*@
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-select form-select-sm" id="VAPT_OPT_SCN_D01_FM01_F04" name="VA_VAPT_OPT_SCN_D01_FM01_F04">
+                                                        <option value="">--Select Device --</option>
+                                                        <option value="Device_1">Device 1</option>
+                                                        <option value="Device_2">Device 2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-lg-2 col-md-4">
+                                            <label for="VAPT_OPT_SCN_D01_FM01_F05" class="form-label">
+                                                Schedule
+                                            </label>
+                                        </div>
+                                        <div class="col-12 col-md-8 col-lg-6 mt-1">
+                                            <div class="row" id="radioMessage">
+                                                <div class="col-12 col-md-3 col-lg-3 col-sm-4 ">
+                                                    <input type="radio" id="VAPT_OPT_SCN_D01_FM01_F05" name="VA_VAPT_OPT_SCN_D01_FM01_F05" class="form-input" />
+                                                    <label for="VAPT_OPT_SCN_D01_FM01_F05" class="form-label" style="margin-left:10px;">One Time</label>
+                                                </div>
+                                                <div class="col-12 col-md-3  col-lg-3  col-sm-4 ">
+                                                    <input type="radio" id="VAPT_OPT_SCN_D01_FM01_F06" name="VA_VAPT_OPT_SCN_D01_FM01_F05" class="form-input" />
+                                                    <label for="VAPT_OPT_SCN_D01_FM01_F06" class="form-label" style="margin-left:10px;">Immediate</label>
+                                                </div>
+                                                <div class="col-12  col-md-3  col-lg-3  col-sm-4">
+                                                    <input type="radio" id="VAPT_OPT_SCN_D01_FM01_F07" name="VA_VAPT_OPT_SCN_D01_FM01_F05" class="form-input" />
+                                                    <label for="VAPT_OPT_SCN_D01_FM01_F07" style="margin-left:10px;">Schedule</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*On_time*@
+                                    <div class="VAPT_DIV" id="Show_ST_ET_NRA" style="display:none">
+                                        <div class="row">
+                                            <div class="col-lg-4 mt-1">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-4">
+                                                        <label for="VAPT_OPT_SCN_D01_FM01_F08" class="form-label">
+                                                            Scan Time<span style="color:red;margin-left:4px">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-4">
+                                                        <input type="time" class="form-control form-control-sm" id="VAPT_OPT_SCN_D01_FM01_F08" name="VA_VAPT_OPT_SCN_D01_FM01_F08" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3  mt-1 ">
+                                                <div class="row">
+                                                    <label for="VAPT_OPT_SCN_D01_FM01_F09" class="form-label col-sm-4 mb-0 mt-1">
+                                                        End Time<span style="color:red;margin-left:4px">*</span>
+                                                    </label>
+                                                    <div class="col-lg-8 col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-lg-12  col-md-12 col-12">
+                                                                <input type="time" class="form-control form-control-sm" id="VAPT_OPT_SCN_D01_FM01_F09" name="VA_VAPT_OPT_SCN_D01_FM01_F09">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 mt-1 ">
+                                                <div class="row">
+                                                    <label for="VAPT_OPT_SCN_D01_FM01_F10" class="form-label col-sm-4 mb-0 mt-1">
+                                                        Not Run After<span style="color:red;margin-left:4px">*</span>
+                                                    </label>
+                                                    <div class="col-lg-6 col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-lg-12  col-md-12 col-12">
+                                                                <input type="time" class="form-control form-control-sm" id="VAPT_OPT_SCN_D01_FM01_F10" name="VA_VAPT_OPT_SCN_D01_FM01_F10" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*schedule_field*@
+                                    <div class="VAPT_DIV" id="Schedule_field" style="display:none">
+                                        <div class="row">
+                                            <div class="col-lg-6 mt-1">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <label for="VAPT_OPT_SCN_D01_FM01_F08" class="form-label mt-1">
+                                                           Scan Date & Time <span style="color:red;margin-left:4px">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-4">
+                                                        <input type="text" id="VAPT_OPT_SCN_D01_FM01_F08" class="form-control form-control-sm" name="daterange" value="Start Date - End Date" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*<div class="col-lg-3  mt-1 ">
+                    <div class="row">
+                        <label for="VAPT_OPT_SCN_D01_FM01_F09" class="form-label col-sm-4 mb-0 mt-1">
+                            End Time<span style="color:red;margin-left:4px">*</span>
+                        </label>
+                        <div class="col-lg-8 col-md-4">
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-12  col-md-12 col-12">
+                                    <input type="time" class="form-control form-control-sm" id="VAPT_OPT_SCN_D01_FM01_F09" name="VA_VAPT_OPT_SCN_D01_FM01_F09">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                                            <div class="col-lg-6 mt-1 ">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <label for="VAPT_OPT_SCN_D01_FM01_F10" class="form-label mb-0 mt-1">
+                                                            Not Run After<span style="color:red;margin-left:4px">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-lg-12  col-md-12 col-12">
+                                                                <input type="text" class="form-control form-control-sm" id="VAPT_OPT_SCN_D01_FM01_F10" name="Not_Run_daterange" value="Not Run After" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row mt-4">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <h4 class="project-details-name col-lg-6">Search Target</h4>
+                                                <hr class="mb-2" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-responsive" id="VAPT_OPT_SCN_D01_FM01_T01_Parent">
+                                                        @*<table class="table mt-0 text-center" id="VAPT_OPT_SCN_D01_FM01_T01">
+                                <thead class="thead">
+                                    <tr>
+                                        <th><input type="checkbox" /></th>
+                                        <th>Target Name</th>
+                                        <th>Target Type</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" style="margin-right:18px;" /></td>
+                                        <td>Taget 01</td>
+                                        <td>IP</td>
+                                        <td>192.168.100.3</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" style="margin-right:18px;" /></td>
+                                        <td>Target 02</td>
+                                        <td>URL</td>
+                                        <td>http://testphp.vulnweb.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-center">
+                                            <button type="button" class="btn btn-primary " id="VAPT_OPT_SCN_D01_FM01_B01">Save</button>@*VAPT_OPT_SCN_D01_T01_B01*@
+                                            <button type="button" class="btn btn-danger " id="VAPT_OPT_SCN_D01_FM01_B02">Cancel</button>@*VAPT_OPT_SCN_D01_T01_B02*@
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*target_Modal *@
+    <div class="modal" tabindex="1" role="dialog" data-bs-backdrop="static" id="VAPT_OPT_SCN_M01">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Target Details</h4>
+                            </div>
+                            <div class="col-sm-6 text-end">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="VAPT_OPT_SCN_M01_B01"></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="activecontent">
+                            <div class="card tcard mt-2">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="table-responsive " id="VAPT_OPT_SCN_M01_T01_Parent">
+                                            @*<table class="table mt-3 text-center" id="VAPT_OPT_SCN_M01_T01">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th>Sr.No</th>
+                                                            <th>Target URL</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>192.168.100.180</td>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <svg height="1.4em" viewBox="0 0 448 512" fill="red" id="VAPT_OPT_SCN_M01_T01_I01"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>192.168.100.192</td>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <svg height="1.4em" viewBox="0 0 448 512" fill="red" id="VAPT_OPT_SCN_M01_T01_I02"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>192.168.100.201</td>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <svg height="1.4em" viewBox="0 0 448 512" fill="red" id="VAPT_OPT_SCN_M01_T01_I03"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(function () {
+        $('input[name="daterange"]').daterangepicker({
+            timePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'DD/M/YYYY hh:mm A'
+            }
+        });
+        $('input[name="Not_Run_daterange"]').daterangepicker({
+            timePicker: true,
+            singleDatePicker: true,
+            showDropdowns: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: 'DD/M/YYYY hh:mm A'
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        validateSingleForm("#VAPT_OPT_SCN_D01_FM01");
+    });
+</script>
+<script>
+    jQuery('#VAPT_OPT_SCN_D01_FM01_B01').click(function (e) {
+        e.preventDefault();
+        var $valid = $('#VAPT_OPT_SCN_D01_FM01').valid();
+        if (!$valid) {
+            $validationVar.focusInvalid();
+            return false;
+        } else {
+            alert('success');
+            $('#VAPT_OPT_SCN_D01_FM01')[0].reset();
+            $('.error').text("");
+            $('#VAPT_OPT_SCN_D01').fadeOut();
+        }
+    })
+    $('#VAPT_OPT_SCN_D01_FM01_B02').click(function () {
+        $('#VAPT_OPT_SCN_D01_FM01')[0].reset();
+        $('.error').text("");
+    });
+</script>
+@************************************ Fade In/Out DIV Script *************************************@
+<script>
+    $(document).ready(function () {
+
+        $('#VAPT_OPT_SCN_T01').DataTable({
+            // Add any additional options you need
+        });
+        $('#VAPT_OPT_SCN_D01_FM01_T01').DataTable({
+            // Add any additional options you need
+        });
+        $('#VAPT_OPT_SCN_M01_T01').DataTable({
+            // Add any additional options you need
+        });
+
+    });
+    $(document).ready(function () {
+        $('#VAPT_OPT_SCN_D02_B01').click(function () {
+            $('#VAPT_OPT_SCN_D02').fadeOut();
+        });
+        $('#VAPT_OPT_SCN_B01').click(function () {
+            $('#VAPT_OPT_SCN_D01').fadeIn();
+        });
+
+
+        $('#VAPT_OPT_SCN_M01_B02').click(function () {
+            $('#VAPT_OPT_SCN_D02').fadeIn();
+        });
+
+        $('#VAPT_OPT_SCN_D02_B03').click(function () {
+            $('#VAPT_OPT_SCN_D02').fadeOut();
+        });
+        //slide down close btn
+        $('#VAPT_OPT_SCN_D01_CLS_BTN').click(function () {
+            $('#VAPT_OPT_SCN_D01').fadeOut();
+            $('#VAPT_OPT_SCN_D01_FM01')[0].reset();
+            $('.error').text("");
+            $('#Show_ST_ET_NRA').fadeOut();
+        });
+
+
+        $('#PM_SCL_001_D01_CLS_BTN_2').click(function () {
+            $('#VAPT_OPT_SCN_D02').fadeOut();
+
+        });
+        $('#PM_SCL_001_M02_CLS_BTN').click(function () {
+            $('#PM_SCL_001_M02_FM01').trigger('reset');
+            $('#PM_SCL_001_M02_FM01').validate().resetForm();
+        });
+
+        //scan create card show
+        $('#VAPT_OPT_SCN_D01_SRC_BTN').click(function () {
+            $('#VAPT_OPT_SCN_D01_D1').fadeIn();
+        });
+        $('#VAPT_OPT_SCN_D01_D1_CLS_BTN').click(function () {
+            $('#VAPT_OPT_SCN_D01_D1').fadeOut();
+        });
+        $('#VAPT_OPT_SCN_D01_FM01_B02').click(function () {
+            $('#VAPT_OPT_SCN_D01').fadeOut();
+            $('#Show_ST_ET_NRA').fadeOut();
+            //$('#VAPT_OPT_SCN_D01_D1').fadeOut();
+        });
+    });
+</script>
+
+@* Start End Time NRA Script *@
+<script>
+    $('#VAPT_OPT_SCN_D01_FM01_F05').click(function () {
+        $('#Show_ST_ET_NRA').fadeIn();
+        $('#Schedule_field').hide();
+    });
+    $('#VAPT_OPT_SCN_D01_FM01_F06').click(function () {
+        $('#Show_ST_ET_NRA').fadeOut();
+    });
+    $('#VAPT_OPT_SCN_D01_FM01_F07').click(function () {
+        $('#Show_ST_ET_NRA').hide();
+        $('#Schedule_field').fadeIn();
+    });
+
+
+</script>
+
+
+
+<script>
+    function getTable() {
+        var jsonData = `{"data":[{"Scan Id": "A01022024", "Creation Time": "01-02-24 12:30PM","Tool Type": "Website Scanning","Method Name": "SQL Injection", "Target": "3","Vapt Device": "192.168.100.2","Scan Start": "02-01-24 24:00PM", "Scan End": "02-01-24 01:00PM","Status": "Complete","Modify": ""}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        //modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_OPT_SCN_T01_Parent', 'VAPT_OPT_SCN_T01', tbdata, disArry, 4, false);
+        customTable(disArry, 4, 'VAPT_OPT_SCN_T01');
+    };
+    function customTable(dtHide, pgLength, chid) {
+        const tablName = document.getElementById(chid);
+        $(tablName).DataTable({
+            pageLength: pgLength,
+            "aoColumnDefs": [
+                { "bSearchable": false, "bVisible": false, "aTargets": dtHide },
+                //{ "bVisible": false, "aTargets": [3] }
+                {
+                    "targets": 9, "render": function (data, type, row) {
+                        var detailsview = '<a href="" data-bs-toggle="modal" data-bs-target="#VAPT_OPT_SCN_M01" onclick="getTable_01()"><i class="fa fa-edit icon"></i></a>';
+                        return detailsview
+                    }
+                }
+            ],
+        });
+    }
+</script>
+@*second_table*@
+<script>
+    function getTable_01() {
+        var jsonData = `{"data":[{"Sr.No":"1","Target URL":"92.168.100.180","Action":""}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        //modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_OPT_SCN_M01_T01_Parent', 'VAPT_OPT_SCN_M01_T01', tbdata, disArry, 4, false);
+        customTable_01(disArry, 4, 'VAPT_OPT_SCN_M01_T01');
+    };
+    function customTable_01(dtHide, pgLength, chid) {
+        const tablName = document.getElementById(chid);
+        $(tablName).DataTable({
+            pageLength: pgLength,
+            "aoColumnDefs": [
+                { "bSearchable": false, "bVisible": false, "aTargets": dtHide },
+                //{ "bVisible": false, "aTargets": [3] }
+                {
+                    "targets": 2, "render": function (data, type, row) {
+                        var detailsview = '<a href="#"><svg height = "1.4em" viewBox = "0 0 448 512" fill = "red" id = "VAPT_OPT_SCN_M01_T01_I01" > <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg></a>';
+                        return detailsview
+                    }
+                }
+            ],
+        });
+    }
+</script>
+@*Third_table*@
+
+<script>
+    function getTable_02() {
+        var jsonData = `{"data":[{"Select":"","Target Name":"Taget 01","Target Type":"IP","Value":"192.168.100.3"},{"Action":"","Target Name":"Taget 02","Target Type":"URL","Value":"http://testPhp.vulnweb.com"}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        //modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_OPT_SCN_D01_FM01_T01_Parent', 'VAPT_OPT_SCN_D01_FM01_T01', tbdata, disArry, 4, false);
+        customTable_02(disArry, 4, 'VAPT_OPT_SCN_D01_FM01_T01');
+    };
+    function customTable_02(dtHide, pgLength, chid) {
+        const tablName = document.getElementById(chid);
+        $(tablName).DataTable({
+            pageLength: pgLength,
+            "aoColumnDefs": [
+                { "bSearchable": false, "bVisible": false, "aTargets": dtHide },
+                //{ "bVisible": false, "aTargets": [3] }
+                {
+                    "targets": 0, "render": function (data, type, row) {
+                        var detailsview = '<input type="checkbox" style="margin-right:18px;" />';
+                        return detailsview
+                    }
+                }
+            ],
+        });
+    }
+</script>

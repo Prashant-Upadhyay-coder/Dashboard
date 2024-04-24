@@ -1,0 +1,421 @@
+﻿
+@{
+    ViewData["Title"] = "Target";
+    Layout = "~/Views/Operator/TargetMasterpage.cshtml";
+}
+
+<body onload="getTable()">
+    <div class="page-wrapper">
+        <div class="content  container-fluid">
+            <div class="row">
+                <div class="col-6 col-md-6 col-lg-6 mt-2">
+                    <ul class="breadcrumb m-0" style="font-size: 18px; font-weight: 500;  padding:0px 0px 9px 0px;">
+                        <li class="breadcrumb-item"><a href="#" style="text-decoration:none; color:black">Operator</a></li>
+                        <li class="breadcrumb-item active" area-current="page" style="color:blue">Target</li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-6 col-lg-6 mt-2">
+                    <button class="btn1 btn ms-5" id="VAPT_OPT_TGT_B01">
+                        <span class="">ADD</span>
+                        <span class="btn1_img">
+                            <img src="~/images/circle plus.png" />
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div id="activecontent">
+                <div class="card tcard mt-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-xl-12 col-lg-12">
+                                <div class="table-responsive" id="VAPT_OPT_TGT_T01_Parent">
+                                    @*<table class="table" id="VAPT_OPT_TGT_T01">
+                                            <thead class="thead">
+                                                <tr>
+                                                    <th>Target Name</th>
+                                                    <th>Type</th>
+                                                    <th style="width:45%">Value</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Window 10</td>
+                                                    <td>IP</td>
+                                                    <td class="hoverable">
+                                                        The Value of window The Value of window the the the hteh the the the the word...
+                                                        <span class="hoverable_effect">The Value of window the the the hteh the the the the word wrod wrod the the the the the the the the hteh the the the the </span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="toggle-container">
+                                                            <div class="main" style="display:flex">
+                                                                <div class="label" style="width:85px">
+                                                                    <span class="toggle-text me-4" id="toggleText">Inactive</span>
+                                                                </div>
+                                                                <div class="button">
+                                                                    <label class="toggle-switch">
+                                                                        <input type="checkbox" id="toggleBtn" style="display:none">
+                                                                        <span class="toggle-slider"></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Type</td>
+                                                    <td>IP</td>
+
+                                                    <td class="hoverable">
+                                                        The Value of window The Value of window the the the hteh the the the the word...
+                                                        <span class="hoverable_effect">The Value of Type the hteh the the the the word wrod wrod the the the the the the the the hteh the the the the</span>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="toggle-container">
+                                                            <span class="toggle-text me-4" id="toggleText">Inactive</span>
+                                                            <label class="toggle-switch">
+                                                                <input type="checkbox" id="toggleBtn" style="display:none">
+                                                                <span class="toggle-slider"></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Type</td>
+                                                    <td>IP</td>
+                                                    <td class="hoverable">
+                                                        The Value of window The Value of window the the the hteh the the the the word...
+                                                        <span class="hoverable_effect">The Value of Type the hteh the the the the word wrod wrod the the the the the the the the hteh the the the the</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="toggle-container">
+                                                            <span class="toggle-text me-4" id="toggleText">Inactive</span>
+                                                            <label class="toggle-switch">
+                                                                <input type="checkbox" id="toggleBtn" style="display:none">
+                                                                <span class="toggle-slider"></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*========================= Scan Slide Down ===========================*@
+                <div id="VAPT_OPT_TGT_D01" style="display:none;">
+                    <div class="card manager-details-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-6  col-md-6 col-9">
+                                    <h4 class="project-details-name col-lg-6">Add Target</h4>
+                                </div>
+                                <div class="col-sm-6 col-lg-6  col-md-6 col-3 text-end">
+                                    <button type="button" class="btn-close" id="VAPT_OPT_TGT_D01_CLS_BTN"></button>@*PM_SCL_001_D01_CLS_BTN*@
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="manager-card">
+                                <form id="VAPT_OPT_TGT_D01_FM01">
+                                    <div class=" p-4" style="border-radius: 20px;">
+                                        <div class="row">
+                                            <div class="col-sm-12  col-md-6 col-lg-6 mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="VA_VAPT_OPT_TGT_D01_FM01_F01" class="form-label mt-1">VAPT Device:<span style="color:red;margin-left:4px">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-select form-select-sm" id="VAPT_OPT_TGT_D01_FM01_F01" name="VA_VAPT_OPT_TGT_D01_FM01_F01">
+                                                            <option value="">-- Select Device --</option>
+                                                            <option value="Database">Database</option>
+                                                            <option value="Switch">Switch</option>
+                                                            <option value="Windows Server">Windows Server</option>
+                                                            <option value="Linux Server ">Linux  Server</option>
+                                                            <option value="Desktop">Desktop</option>
+                                                            <option value="Router">Router</option>
+                                                            <option value="Firewall">Firewall</option>
+                                                            <option value="Website">Website</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12  col-md-6 col-lg-6 mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="VAPT_OPT_TGT_D01_FM01_F02" class="form-label mt-1">Target Type:<span style="color:red;margin-left:4px">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-select form-select-sm" id="VAPT_OPT_TGT_D01_FM01_F02" name="VA_VAPT_OPT_TGT_D01_FM01_F02">
+                                                            <option value="">-- Select Type --</option>
+                                                            <option value="IP">IP</option>
+                                                            <option value="IP+PORT">IP + Port</option>
+                                                            <option value="IPRANGE+PORT">IPRange + Port </option>
+                                                            <option value="URL">URL</option>
+                                                            <option value="URL+PORT">URL + Port</option>
+                                                            <option value="HOSTNAME">HOSTname</option>
+                                                            <option value="DOMAIN">DOMAIN</option>
+                                                            <option value="DATABASE TYPE">Database Type</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row ">
+                                            <div class="col-sm-12  col-md-6 col-lg-6  mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4 ">
+                                                        <label for="VAPT_OPT_TGT_D01_FM01_F03" class="form-label mt-1">Target Value:<span style="color:red;margin-left:4px">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control form-control-sm" id="VAPT_OPT_TGT_D01_FM01_F03" name="VA_VAPT_OPT_TGT_D01_FM01_F03" />
+                                                        <div id="exampleFormat" style="color:gray; font-size:11px;"></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-12  col-md-6 col-lg-6  mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4 ">
+                                                        <label for="VAPT_OPT_TGT_D01_FM01_F04" class="form-label mt-1">MAC:</label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control form-control-sm" id="VAPT_OPT_TGT_D01_FM01_F04" name="VA_VAPT_OPT_TGT_D01_FM01_F04" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row ">
+                                            <div class="col-sm-12  col-md-6 col-lg-6  mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="VAPT_OPT_TGT_D01_FM01_F05" class="form-label mt-1">Domain Name:</label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control form-control-sm" id="VAPT_OPT_TGT_D01_FM01_F05" name="VA_VAPT_OPT_TGT_D01_FM01_F05" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-12  col-md-6 col-lg-6  mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="VAPT_OPT_TGT_D01_FM01_F06" class="form-label mt-1">Virtual Name:</label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control form-control-sm" id="VAPT_OPT_TGT_D01_FM01_F06" name="VA_VAPT_OPT_TGT_D01_FM01_F06" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12  col-md-6 col-lg-6  mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4 ">
+                                                        <label for="VAPT_OPT_TGT_D01_FM01_F07" class="form-label mt-1">Device Mode:</label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-select form-select-sm" id="VAPT_OPT_TGT_D01_FM01_F07" name="VA_VAPT_OPT_TGT_D01_FM01_F07">
+                                                            <option value="">-- Select Mode --</option>
+                                                            <option value="NA">NA</option>
+                                                            <option value="SNMP">SNMP</option>
+                                                            <option value="WML">WML</option>
+                                                            <option value="Agent">Agent</option>
+                                                            <option value="SSH">SSH</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-12  col-md-6 col-lg-6  mt-1">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label for="VAPT_OPT_TGT_D01_FM01_F08" class="form-label mt-1">Device Type:</label>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-select form-select-sm" id="VAPT_OPT_TGT_D01_FM01_F08" name="VA_VAPT_OPT_TGT_D01_FM01_F08">
+                                                            <option value="">-- Select Device --</option>
+                                                            <option value="Database">Database</option>
+                                                            <option value="Switch">Switch</option>
+                                                            <option value="Windows Server">Windows Server</option>
+                                                            <option value="Linux Server ">Linux  Server</option>
+                                                            <option value="Desktop">Desktop</option>
+                                                            <option value="Router">Router</option>
+                                                            <option value="Firewall">Firewall</option>
+                                                            <option value="Website">Website</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row tec_mt-4">
+                                            <div class="col-sm-12 text-center">
+                                                <button type="button" class="btn btn-primary ms-2 " id="VAPT_OPT_TGT_D01_FM01_B01">Submit</button>
+                                                <button type="button" class="btn btn-danger ms-2" id="VAPT_OPT_TGT_D01_FM01_B02">Cancel</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@* ============================script===================================== *@
+@* New Toggle Script *@
+<script>
+    $(document).ready(function () {
+    function displayExampleFormat() {
+                var targetType = $('#VAPT_OPT_TGT_D01_FM01_F02').val();
+                var exampleFormat = "";
+
+                // Set example format based on selected target type
+                switch (targetType) {
+                    case 'IP':
+                        exampleFormat = "Example: 192.168.1.1";
+                        break;
+                    case 'IP+PORT':
+                        exampleFormat = "Example: 192.168.1.1:8080";
+                        break;
+                    case 'IPRANGE+PORT':
+                        exampleFormat = "Example: 192.168.1.1-192.168.1.100:8080";
+                        break;
+                    case 'URL':
+                        exampleFormat = "Example: http://example.com";
+                        break;
+                    case 'URL+PORT':
+                        exampleFormat = "Example: http://example.com:8080";
+                        break;
+                    case 'HOSTNAME':
+                        exampleFormat = "Example: example.com";
+                        break;
+                    case 'DOMAIN':
+                        exampleFormat = "Example: example.com";
+                        break;
+                    case 'DATABASE TYPE':
+                        exampleFormat = "Example: Database Type";
+                        break;
+                    default:
+                        exampleFormat = "";
+                        break;
+                }
+
+                // Display example format
+                $('#exampleFormat').text(exampleFormat);
+            }
+
+            // Call displayExampleFormat function on change of Target Type dropdown
+            $('#VAPT_OPT_TGT_D01_FM01_F02').change(displayExampleFormat);
+
+            // Call displayExampleFormat function on page load to display initial example format
+            displayExampleFormat();
+        });
+    </script>
+<script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const toggleText = document.getElementById('toggleText');
+
+    toggleBtn.addEventListener('change', function () {
+        if (this.checked) {
+            toggleText.textContent = 'Active';
+            // toggleText.style.color = "green";
+        } else {
+            toggleText.textContent = 'Inactive';
+            //toggleText.style.color = "red";
+        }
+    });
+</script>
+
+<script>
+    //$(document).ready(function () {
+    //    $('#VAPT_OPT_TGT_T01').DataTable({
+    //    });
+    //});
+    $(document).ready(function () {
+        $('#VAPT_OPT_TGT_B01').click(function () {
+            $('#VAPT_OPT_TGT_D01').fadeIn();
+        });
+        $('#VAPT_OPT_TGT_D01_FM01_B02').click(function () {
+            $('#VAPT_OPT_TGT_D01').fadeOut();
+        });
+        //slide down close btn
+        $('#VAPT_OPT_TGT_D01_CLS_BTN').click(function () {
+            $('#VAPT_OPT_TGT_D01').fadeOut();
+            $('#VAPT_OPT_TGT_D01_FM01')[0].reset();
+            $('.error').text("");
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        validateSingleForm("#VAPT_OPT_TGT_D01_FM01");
+
+    });
+</script>
+@************************************ Form Validation *************************************@
+
+<script>
+    // Button click event handling
+    $('#VAPT_OPT_TGT_D01_FM01_B01').click(function (e) {
+        e.preventDefault();
+        var $valid = $('#VAPT_OPT_TGT_D01_FM01').valid();
+        if (!$valid) {
+            $validatorform.focusInvalid();
+            return false;
+        } else {
+            alert('success');
+            $('#VAPT_OPT_TGT_D01_FM01')[0].reset();
+            $('.error').text("");
+        }
+    });
+
+    $('#VAPT_OPT_TGT_D01_FM01_B02').click(function () {
+        $('#VAPT_OPT_TGT_D01_FM01')[0].reset();
+        $('.error').text("");
+    });
+</script>
+<script>
+    function getTable() {
+        var jsonData = `{"data":[{"Target Name":"Window 10","Type":"IP","Value":"The Value of window the the the hteh the the the the word wrod wrod the the the the the the the the hteh the the the the","Status":""},{"Target Name":"Window 10","Type":"IP","Value":"The Value of window the the the hteh the the the the word wrod wrod the the the the the the the the hteh the the the the","Status":""}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        //modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_OPT_TGT_T01_Parent', 'VAPT_OPT_TGT_T01', tbdata, disArry, 4, false);
+        customTable_01(disArry, 4, 'VAPT_OPT_TGT_T01');
+    };
+    function customTable_01(dtHide, pgLength, chid) {
+        const tablName = document.getElementById(chid);
+        $(tablName).DataTable({
+            pageLength: pgLength,
+            "aoColumnDefs": [
+                { "bSearchable": false, "bVisible": false, "aTargets": dtHide },
+                //{ "bVisible": false, "aTargets": [3] }
+                {
+                    "targets": 3, "render": function (data, type, row) {
+                        var detailsview = '<div class="toggle-container"><span class="toggle-text me-4" id="toggleText">Inactive</span ><label class="toggle-switch"><input type="checkbox" id="toggleBtn" style="display:none"><span class="toggle-slider"></span></label></div>';
+                        return detailsview
+                    }
+                }
+            ],
+        });
+    }
+</script>

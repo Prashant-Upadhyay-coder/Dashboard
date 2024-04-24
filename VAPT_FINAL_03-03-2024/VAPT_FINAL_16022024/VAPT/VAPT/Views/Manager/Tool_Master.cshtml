@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewData["Title"] = "Tool_Master";
+    Layout = "~/Views/Manager/masterpage.cshtml";
+}
+<body onload="getTable()">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Tool Master</h2>
+                </div>
+            </div>
+            <div id="activecontent">
+                <div class="card p-3 tcard">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-2 col-sm-3">
+                                    <label for="dropdownMenuLink" class="tec_form-label mt-1">Select Tool Type:</label>
+                                </div>
+                                <div class="col-lg-5 col-md-3 col-sm-4">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm dropdown-toggle col-sm-12 ddd" href="#" role="button" id="VAPT_MGR_TM_SEL01" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Select Tool Type
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="VAPT_MGR_TM_SEL01">
+                                            <li><a class="dropdown-item" href="#">Website Scanning</a></li>
+                                            <li><a class="dropdown-item" href="#">Penetration Testing</a></li>
+                                            <li><a class="dropdown-item" href="#">Vulnerability Scanning</a></li>
+                                            <li><a class="dropdown-item" href="#">Compliance</a></li>
+                                            <li><a class="dropdown-item" href="#">Threat Detection</a></li>
+                                            <li><a class="dropdown-item" href="#">Database Detection</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-4">
+                                    <button class="btn btn-sm" id="VAPT_MGR_TM_B01">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-xl-12 col-lg-12 mt-3">
+                            <div class="row">
+                                <div class="table-responsive" id="VAPT_MGR_TM_T01_Parent">
+                                    @*<table class="table text-center p-2" id="VAPT_MGR_TM_T01">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th>Tool Name</th>
+                                                <th>Tool Version</th>
+                                                <th style="width:37%">Tool Details</th>
+                                                <th>Entry Time</th>
+                                                <th>End Time</th>
+                                                <th>Status</th>
+                                                <th>Method</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Website Scanning</td>
+                                                <td>7.93</td>
+                                                <td class="hoverable">
+                                                    It is designed to explore networks, discover hosts, and identify...
+                                                    <span class="hoverable_effect">It is designed to explore networks, discover hosts, and identify open ports and services running on those hosts</span>
+                                                </td>
+                                                <td>23:44 PM</td>
+                                                <td>24:00 PM</td>
+                                                <td class="text-success">Active</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-primary" id="VAPT_MGR_TM_T01_B01" onclick="Open_Drop_Down()">
+                                                        View
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vulnerability Scanning</td>
+                                                <td>3.0.4</td>
+                                                <td class="hoverable">
+                                                    It is specifically designed to scan web applications for common...
+                                                    <span class="hoverable_effect">It is specifically designed to scan web applications for common vulnerabilities and weaknesses, such as SQL injection, cross-site scripting (XSS), command injection, and more</span>
+                                                </td>
+                                                <td>23:44 PM</td>
+                                                <td>24:00 PM</td>
+                                                <td class="text-danger">In-Active</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-primary" id="VAPT_MGR_TM_T01_B02">
+                                                        View
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Website Scanning</td>
+                                                <td>2.5.0</td>
+                                                <td class="hoverable">
+                                                    Nikto scans web servers and applications for common security...
+                                                    <span class="hoverable_effect">Nikto scans web servers and applications for common security issues, misconfigurations, outdated software versions, and other vulnerabilities that could be exploited.</span>
+                                                </td>
+                                                <td>23:44 PM</td>
+                                                <td>24:00 PM</td>
+                                                <td class="text-success">Active</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-primary" id="VAPT_MGR_TM_T01_B03">
+                                                        View
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*========================= Scan Slide Down ===========================*@
+                <div id="VAPT_MGR_TM_D01" style="display:none;">
+                    <div class="card manager-details-card mt-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <h2 class="project-details-name col-lg-6">Website Scanning</h2>
+                                <div class="col-sm-6 text-end">
+                                    <button type="button" class="btn-close" id="VAPT_MGR_TM_D01_CLS_BTN"></button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive mt-4" id="VAPT_MGR_TM_D01_T01_Parent">
+                                        @*<table class="table text-center p-2" id="VAPT_MGR_TM_D01_T01">
+
+                                            <thead class="thead">
+                                                <tr>
+                                                    <th>Method Name</th>
+                                                    <th>Method Type</th>
+                                                    <th>Method Version</th>
+                                                    <th>Description</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>http-xssed</td>
+                                                    <td>-</td>
+                                                    <td>2.0001</td>
+                                                    <td>The product uses external input to construct a pathname that should be within a restricted directory</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>http-sql-injection</td>
+                                                    <td>-</td>
+                                                    <td>2.0006</td>
+                                                    <td>The product uses external input to construct a pathname that should be within a restricted directory</td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+@************************************ Fade In/Out DIV Script *************************************@
+<script>
+    $(document).ready(function () {
+        $('#VAPT_MGR_TM_T01').DataTable({
+            // Add any additional options you need
+        });
+        $('#VAPT_MGR_TM_D01_T01').DataTable({
+
+        });
+        //slide down close btn
+        $('#VAPT_MGR_TM_D01_CLS_BTN').click(function () {
+            $('#VAPT_MGR_TM_D01').fadeOut();
+        });
+
+    });
+</script>
+@************************************ Form Validation *************************************@
+<script>
+    function show_web_card() {
+        $('#VAPT_MGR_TM_D01').show();
+    }
+</script>
+<script>
+    function Open_Drop_Down() {
+        $('#VAPT_MGR_TM_D01').show();
+        getTable_01();
+    }
+</script>
+<script>
+    function getTable() {
+        var jsonData = `{"data":[{"Tool Name":"Website Scanning","Tool Version":"7.93","Tool Details":"It is designed to explore networks, discover hosts, and identify open ports and services running on those hosts","Entry Time":"23:44 PM","End Time":"24:00 PM","Status":"Active","Method":""}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        //modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, false);
+        customTable_01(disArry, 4, 'VAPT_MGR_TM_T01');
+    };
+    function customTable_01(dtHide, pgLength, chid) {
+        const tablName = document.getElementById(chid);
+        $(tablName).DataTable({
+            pageLength: pgLength,
+            "aoColumnDefs": [
+                { "bSearchable": false, "bVisible": false, "aTargets": dtHide },
+                //{ "bVisible": false, "aTargets": [3] }
+                {
+                    "targets": 6, "render": function (data, type, row) {
+                        var detailsview ='<button class="btn btn-sm btn-primary" id="VAPT_MGR_TM_T01_B01" onclick="Open_Drop_Down()">View</button >';
+                        return detailsview
+                    }
+                }
+            ],
+
+        });
+    }
+</script>
+@*second_table*@
+<script>
+    function getTable_01() {
+        var jsonData = `{"data":[{"Method Name":"http-xssed","Method Type":"-","Method Version":"2.0001","Description":"The product uses external input to construct a pathname that should be within a restricted directory"}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        //modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_MGR_TM_D01_T01_Parent', 'VAPT_MGR_TM_D01_T01', tbdata, disArry, 4, false);
+        customTable(disArry, 4, 'VAPT_MGR_TM_D01_T01');
+    };
+</script>

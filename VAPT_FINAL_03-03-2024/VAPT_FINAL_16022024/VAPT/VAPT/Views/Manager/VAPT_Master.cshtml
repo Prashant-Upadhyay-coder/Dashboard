@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewData["Title"] = "VAPT_Master";
+    Layout = "~/Views/Manager/masterpage.cshtml";
+}
+<body onload="getTable()">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Vulnerability Master</h2>
+                </div>
+            </div>
+            <div id="activecontent">
+                <div class="card p-3 tcard">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-8">
+                            <div class="row">
+                                <div class="col-sm-4  mt-1">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm dropdown-toggle col-sm-12" style="overflow:hidden" href="#" role="button" id="VAPT_MGR_VAMST_SEL01" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Vulnerabality Name
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="VAPT_MGR_VAMST_SEL01">
+                                            <li><a class="dropdown-item" href="#">http-enum</a></li>
+                                            <li><a class="dropdown-item" href="#">http-sql-injection</a></li>
+                                            <li><a class="dropdown-item" href="#">mysql-enum</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4   mt-1">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm dropdown-toggle col-sm-12 " style="overflow:hidden" href="#" role="button" id="VAPT_MGR_VAMST_SEL02" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Vulnerabality Type
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="VAPT_MGR_VAMST_SEL02">
+                                            <li><a class="dropdown-item" href="#">Website Scanning</a></li>
+                                            <li><a class="dropdown-item" href="#">penetration testing</a></li>
+                                            <li><a class="dropdown-item" href="#">Vulnerability scanning</a></li>
+                                            <li><a class="dropdown-item" href="#">Compliance</a></li>
+                                            <li><a class="dropdown-item" href="#">Threat detection</a></li>
+                                            <li><a class="dropdown-item" href="#">Database detection</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4  mt-1">
+                                    <div class="button">
+                                        <button class="btn btn-sm" id="VAPT_MGR_VAMST_B01">Search</button>@*onclick="show_web_card();*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="VAPT_MGR_MST_D01_Parent" class="table-responsive mt-4">
+                                @*<table class="table" id="VAPT_MGR_VAMST_T01">
+                                    <thead class="thead">
+                                        <tr>
+                                            <th>Vul. Name</th>
+                                            <th>Vul. External Reference</th>
+                                            <th>Vul. Type</th>
+                                            <th style="width:33%">Vul. Description</th>
+                                            <th>Vul. Classifier </th>
+                                            <th>Severity</th>
+                                            <th>Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>mysql-enum</td>
+                                            <td>https://roxsd.com</td>
+                                            <td>Penetration Testing</td>
+                                            <td class="hoverable">
+                                                Performs valid-user enumeration against MySQL...
+                                                <span class="hoverable_effect">Performs valid-user enumeration against MySQL server using a bug discovered</span>
+                                            </td>
+                                            <td>-</td>
+                                            <td class="text-danger">High</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#VAPT_MGR_VAMST_M01">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>http-enum</td>
+                                            <td>https://roxsd.com</td>
+                                            <td>Vulnerability Scanning</td>
+                                            <td class="hoverable">
+                                                Enumerates directories used by popular web applications...
+                                                <span class="hoverable_effect">Enumerates directories used by popular web applications and servers.</span>
+                                            </td>
+                                            <td>-</td>
+                                            <td class="text-success">Medium</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#VAPT_MGR_VAMST_M01">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>http-sql-injection</td>
+                                            <td>https://roxsd.com</td>
+                                            <td>Website Scanning</td>
+                                            <td class="hoverable">
+                                                Spiders an HTTP server looking for URLs containing...
+                                                <span class="hoverable_effect">Spiders an HTTP server looking for URLs containing queries vulnerable to an SQL injection attack. </span>
+                                            </td>
+                                            <td>-</td>
+                                            <td class="text-warning">Low</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#VAPT_MGR_VAMST_M01">View</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*========================= View Modal ===========================*@
+    <div class="modal" tabindex="1" role="dialog" data-bs-backdrop="static" id="VAPT_MGR_VAMST_M01">
+        <div class="modal-dialog modal-lg" role="document" >
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3>Details</h3>
+                            </div>
+                            <div class="col-sm-6 text-end">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="VAPT_MGR_VAMST_M01"></button>
+                            </div>
+                        </div>
+                        <div id="activecontent">
+                            <div class="card tcard">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="table-responsive" id="VAPT_MGR_VAMST_M01_T01_Parent">
+                                                @*<table class="table" id="VAPT_MGR_VAMST_M01_T01">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th>Parameter</th>
+                                                            <th>Value</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>CWE-39</td>
+                                                            <td>https://CDWE_39./reach/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>CWE-23</td>
+                                                            <td>https://CDWE_23./reach/</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $('#VAPT_MGR_VAMST_T01').DataTable();
+        $('#VAPT_MGR_VAMST_M01_T01').DataTable();
+    });
+
+</script>
+<script>
+    function getTable() {
+        var jsonData = `{"data":[{"Vul. Name":"mysql-enum","Vul. External Reference":"https://roxsd.com","Vul. Type":"Penetration Testing","Vul. Description":"Performs valid-user enumeration against MySQL server using a bug discovered","Vul. Classifier":"-","Severity":"high","Info":""}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        //modifiedTable('VAPT_MGR_TM_T01_Parent', 'VAPT_MGR_TM_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_MGR_MST_D01_Parent', 'VAPT_MGR_VAMST_T01', tbdata, disArry, 4, false);
+        customTable_01(disArry, 4, 'VAPT_MGR_VAMST_T01');
+    };
+
+    function customTable_01(dtHide, pgLength, chid) {
+        const tablName = document.getElementById(chid);
+        $(tablName).DataTable({
+            pageLength: pgLength,
+            "aoColumnDefs": [
+                { "bSearchable": false, "bVisible": false, "aTargets": dtHide },
+                //{ "bVisible": false, "aTargets": [3] }
+                {
+                    "targets": 6, "render": function (data, type, row) {
+                        var detailsview = '<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#VAPT_MGR_VAMST_M01" onclick="getTable_01()">View</button>';
+                        return detailsview
+                    }
+                }
+            ],
+
+        });
+    }
+</script>
+@*Second_table_01*@
+<script>
+    function getTable_01() {
+        var jsonData = `{"data":[{"Parameter":"mysql-enum","Value":"https://roxsd.com"},{"Parameter":"mysql-enum","Value":"https://roxsd.com"}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        modifiedTable('VAPT_MGR_VAMST_M01_T01_Parent', 'VAPT_MGR_VAMST_M01_T01', tbdata, disArry, 4, true);
+        //other
+       // modifiedTable('VAPT_MGR_VAMST_M01_T01_Parent', 'VAPT_MGR_VAMST_M01_T01', tbdata, disArry, 4, false);
+        //customTable_01(disArry, 4, 'VAPT_MGR_VAMST_M01_T01');
+    };
+</script>
+

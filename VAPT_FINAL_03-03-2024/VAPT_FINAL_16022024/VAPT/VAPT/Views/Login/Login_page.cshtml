@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewData["Title"] = "Login_page";
+    Layout = "~/Views/Login/login_MasterPage.cshtml";
+}
+
+
+<style>
+    .input-group {
+        position: relative;
+    }
+
+    .password-toggle {
+        position: absolute;
+        top: 7px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .main_form {
+        border-radius: 20px;
+        background-color: rgb(216 225 249 / 38%);
+    }
+
+    .image-div {
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: scale(1.1)
+    }
+
+    .main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    i.fa-solid.fa-chevron-down {
+        position: absolute;
+        top: 50%;
+        right: 17px;
+        color: black;
+        transform: translateY(-50%);
+    }
+
+    .icon {
+        min-width: 30px;
+        margin: 10px 00px;
+        color: black;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+</style>
+<body>
+    <div class="container main">
+        <div class="row ">
+            <div class="col-12">
+                <div class="row justify-content-center align-items-center py-5 ">
+                    <div class="main_form col-lg-4 col-7 ">
+                        <p class="text-center h2 fw-bold mb-4 mx-1 mx-4 mt-4">Sign In</p>
+                        <form class=" mx-1 mx-md-4" id="loginForm">
+                            <div class="d-flex flex-row align-items-center mb-5">
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="text" id="Username" class="form-control shadow-none"
+                                           placeholder="User Name" />
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-5 input-group position-relative">
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="password" id="Password" class="form-control shadow-none"
+                                           placeholder="Password" />
+                                    <i class="fa-regular fa-eye icon " id="hide" style="display: none;"></i>
+                                    <i class="fa-regular fa-eye-slash icon" id="show"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-5">
+                                <div class="form-outline flex-fill mb-0">
+                                    <select id="SelectType" class="form-select shadow-none">
+                                        <option value="" selected>Select Type</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Operator">Operator</option>
+                                        <option value="Manager">Manager</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" justify-content-center text-center  mb-3 mb-lg-4">
+                                <button type="submit" class="btn btn-primary px-md-5 px-sm-4"
+                                        style="border-radius: 20px;">
+                                    LogIn
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $('#show').click(function () {
+            $("#Password").attr('type', 'text');
+            $("#show").hide();
+            $("#hide").show();
+        });
+        $('#hide').click(function () {
+            $("#Password").attr('type', 'password');
+            $("#hide").hide();
+            $("#show").show();
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#loginForm').submit(function (e) {
+            e.preventDefault();
+            //var Applicationid = $('#sapp :selected').text();
+            //var role = $('#form3Example4cd').val();
+            //var roletext = $('#sutype :selected').text();
+            //var datas = {
+            //    Username: $('#Username').val(),
+            //    Password: $('#pass').val(),
+            //    Roll: $('#SelectType').val(),
+            //}
+
+            if ($('#Username').val() === 'admin' && $('#Password').val() == 'admin@123' && $('#SelectType').val() =='Admin') {
+                //document.getElementById('MessageText').innerText = res;
+                $("#loginForm")[0].reset();
+                window.location.href = '@Url.Content("~/Admin/indexpage")';
+            } else if ($('#Username').val() === 'operator' && $('#Password').val() == 'operator@123' && $('#SelectType').val() == 'Operator') {
+                //document.getElementById('MessageText').innerText = res;
+                $("#loginForm")[0].reset();
+                window.location.href = '@Url.Content("~/Operator/Target")';
+            } else if ($('#Username').val() === 'manager' && $('#Password').val() == 'manager@123' && $('#SelectType').val() == 'Manager') {
+                //document.getElementById('MessageText').innerText = res;
+                $("#loginForm")[0].reset();
+                window.location.href = '@Url.Content("~/Manager/CWE_Master")';
+            }else {
+                //document.getElementById('MessageText').innerText = 'Invalid username or password';
+                alert('Invalid username or password');
+                $("#loginForm")[0].reset();
+            }
+
+        });
+    });
+</script>
+

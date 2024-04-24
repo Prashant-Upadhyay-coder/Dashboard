@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "CWE_Master";
+    Layout = "~/Views/Manager/masterpage.cshtml";
+}
+<body onload="getTable();">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>CWE Master</h2>
+                </div>
+            </div>
+            <div id="activecontent">
+                <div class="card tcard p-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-xl-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>OWSAP TOP 10 CWE <sub>(WEB<sup> 2021</sup> & API <sup> 2023</sup>)</sub></h3>
+                                </div>
+                            </div>
+                            <hr class="mt-2" />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive  mt-4" id="VAPT_MGR_CWE_T01">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('#VAPT_MGR_CWE_T01').DataTable({
+        });
+    });
+</script>
+
+
+
+
+@* bind *@
+<script>
+    function getTable() {
+        var jsonData = `{"data":[{"OWASP DB ID":929,"CWE ID":"Planned Ticket","CWE Name":"planned 1","Description":"planned 1"}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+        modifiedTable('VAPT_MGR_CWE_T01', 'VAPT_MANA_001_D01_FM01_T0222', tbdata, disArry, 4, true);
+        //other
+        //modifiedTable('parentWr', 'showData', tbdata, disArry, 4, false);
+        //customTable(disArry, 4, 'showData');
+    };
+
+</script>

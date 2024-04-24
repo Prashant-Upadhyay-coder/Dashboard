@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewData["Title"] = "Tool_Linkage";
+    Layout = "~/Views/Manager/masterpage.cshtml";
+}
+
+<body onload="getTable()">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Tool Linkage</h2>
+                </div>
+            </div>
+            <div id="activecontent">
+                <div class="card p-3 manager-details-card ">
+                    <div class="row">
+                        <div class="col-sm-12 col-xl-12 col-lg-12">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <div class="col-lg-12  dd d-lg-flex d-sm-block justify-content-between">
+                                            <div class="dropdown mt-1">
+                                                <a class="btn btn-sm dropdown-toggle ddd" href="#" role="button" id="VAPT_MGR_TL_SEL01" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    OWASP Name
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="VAPT_MGR_TL_SEL01">
+                                                    <li><a class="dropdown-item options" href="#">OWSAP TOP 10 CWE(web) </a></li>
+                                                    <li><a class="dropdown-item options" href="#">OWSAP TOP 10 CWE(API)</a></li>
+                                                    <li><a class="dropdown-item options" href="#">Top 25 CWE</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown mt-1">
+                                                <a class="btn btn-sm dropdown-toggle ddd" href="#" role="button" id="VAPT_MGR_TL_SEL02" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Vulnerabality Type
+                                                </a>
+
+                                                <ul class="dropdown-menu" aria-labelledby="VAPT_MGR_TL_SEL02">
+                                                    <li><a class="dropdown-item" href="#">Website Scanning</a></li>
+                                                    <li><a class="dropdown-item" href="#">penetration testing</a></li>
+                                                    <li><a class="dropdown-item" href="#">Vulnerability scanning</a></li>
+                                                    <li><a class="dropdown-item" href="#">Compliance</a></li>
+                                                    <li><a class="dropdown-item" href="#">Threat detection</a></li>
+                                                    <li><a class="dropdown-item" href="#">Database detection</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown mt-1">
+                                                <a class="btn btn-sm dropdown-toggle ddd" href="#" role="button" id="VAPT_MGR_TL_SEL03" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Tool Name
+                                                </a>
+
+                                                <ul class="dropdown-menu" aria-labelledby="VAPT_MGR_TL_SEL03">
+                                                    <li><a class="dropdown-item" href="#">Website Scanning</a></li>
+                                                    <li><a class="dropdown-item" href="#">penetration testing</a></li>
+                                                    <li><a class="dropdown-item" href="#">Vulnerability scanning</a></li>
+                                                    <li><a class="dropdown-item" href="#">Compliance</a></li>
+                                                    <li><a class="dropdown-item" href="#">Threat detection</a></li>
+                                                    <li><a class="dropdown-item" href="#">Database detection</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="button mt-1">
+                                                <button class="btn btn-sm" id="VAPT_MGR_TL_B01" onclick="show_web_card();">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive mt-4" id="VAPT_MGR_TL_T01_Parent">
+                                        @*<table class="table text-center" >
+                                                <thead class="thead">
+                                                    <tr>
+
+                                                        <th>Method Name</th>
+                                                        <th>Method  Version</th>
+                                                        <th>Tool Type</th>
+                                                        <th>Description</th>
+                                                        <th>CWE ID</th>
+                                                        <th>URL Refrence</th>
+                                                        <th>Apply for scan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+                                                        <td>ssl-dh-params</td>
+                                                        <td>1.0017</td>
+                                                        <td>penetration testing</td>
+                                                        <td>Cross-Site Scripting attack involves injecting malicious</td>
+                                                        <td>23</td>
+                                                        <td>http-csrf</td>
+                                                        <td>yes</td>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>http://dns-brute</td>
+                                                        <td>4.0007</td>
+                                                        <td>vulnerability scanning</td>
+                                                        <td>-</td>
+                                                        <td>33</td>
+                                                        <td>http://ssl-dh/</td>
+                                                        <td>yes</td>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>http-csrf</td>
+                                                        <td>2.0019</td>
+                                                        <td>Compliance</td>
+                                                        <td>-</td>
+                                                        <td>21</td>
+                                                        <td>http://ff.ff</td>
+                                                        <td>no</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*========================= Tool Detail Slide Down ===========================*@
+                <div id="VAPT_MGR_TL_D01" style="display:none;">
+                    <div class="card manager-details-card mt-5">
+                        <div class="card-body">
+                            <div class="row">
+                                <h2 class="project-details-name col-lg-6">Tool Details</h2>
+                                <div class="col-sm-6 text-end">
+                                    <button type="button" class="btn-close" id="VAPT_MGR_TL_D01_CLS_BTN"></button>
+                                </div>
+                            </div>
+                            <hr class="mt-2" />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive mt-4" id="VAPT_MGR_TL_D01_T01_Parent">
+                                        @*<table class="table text-center p-2" id="VAPT_MGR_TL_D01_T01">
+                                            <thead class="thead">
+                                                <tr>
+                                                    <th>
+                                                        <input class="form-input" type="checkbox" value="" id="VAPT_MGR_TL_D01_T01_F01">
+                                                    </th>
+                                                    <th>Method Name</th>
+                                                    <th>Method  Version</th>
+                                                    <th>Tool Type</th>
+                                                    <th>Description</th>
+                                                    <th>CWE ID</th>
+                                                    <th>URL Refrence</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-input" type="checkbox" value="" id="VAPT_MGR_TL_D01_T01_F02">
+                                                    </td>
+
+                                                    <td>http-xssed</td>
+                                                    <td>1.0016</td>
+                                                    <td>Website Scanning</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <input class="form-input" type="checkbox" value="" id="VAPT_MGR_TL_D01_T01_F03">
+                                                    </th>
+                                                    <td>http-sql-injection</td>
+                                                    <td>1.0017</td>
+                                                    <td>Website Scanning</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <button type="button" class="btn btn-primary ms-2 " id="VAPT_MGR_TL_D01_T01_B01">Save</button>
+                                    <button type="button" class="btn btn-danger ms-2 " id="VAPT_MGR_TL_D01_T01_B02">Cancel</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+@************************************ Fade In/Out DIV Script *************************************@
+
+<script>
+    $(document).ready(function () {
+
+        //slide down close btn
+        $('#VAPT_MGR_TL_D01_T01_B02').click(function () {
+            $('#VAPT_MGR_TL_D01').fadeOut();
+        });
+        //slide down close btn
+        $('#VAPT_MGR_TL_D01_CLS_BTN').click(function () {
+            $('#VAPT_MGR_TL_D01').fadeOut();
+        });
+
+    });
+</script>
+<script>
+ 
+</script>
+
+@*second_table*@
+<script>
+    function show_web_card() {
+        $('#VAPT_MGR_TL_D01').show();
+        var jsonData = `{"data":[{"Action":"","Method Name":"ssl-dh-params","Method  Version":"1.0017","Tool Type":"penetration testing","Description":"Cross-Site Scripting attack involves injecting malicious"}]}`
+        var tbdata = JSON.parse(jsonData).data;
+        var disArry = [];
+        // if true
+     // modifiedTable('VAPT_MGR_TL_T01_Parent', 'VAPT_MGR_TL_T01', tbdata, disArry, 4, true);
+        //other
+        modifiedTable('VAPT_MGR_TL_D01_T01_Parent', 'VAPT_MGR_TL_D01_T01', tbdata, disArry, 4, false);
+        customTable_01(disArry, 4, 'VAPT_MGR_TL_D01_T01');
+    };
+
+    function customTable_01(dtHide, pgLength, chid) {
+        const tablName = document.getElementById(chid);
+        $(tablName).DataTable({
+            pageLength: pgLength,
+            "aoColumnDefs": [
+                { "bSearchable": false, "bVisible": false, "aTargets": dtHide },
+                //{ "bVisible": false, "aTargets": [3] }
+                {
+                    "targets": 0, "render": function (data, type, row) {
+                        var detailsview = '<input class="form-input" type="checkbox" value="" id="VAPT_MGR_TL_D01_T01_F01">';
+                        return detailsview
+                    }
+                }
+            ],
+
+        });
+    }
+    
+</script>
